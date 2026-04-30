@@ -1,0 +1,2315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbaikan &amp; Penyelarasan Learning Outcomes — Program Studi Data Science</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface2: #232734;
+            --border: #2e3345;
+            --text: #e4e6ed;
+            --text-muted: #9ca0b0;
+            --accent: #6c63ff;
+            --accent-glow: rgba(108,99,255,.25);
+            --sem1: #3b82f6;
+            --sem2: #06b6d4;
+            --sem3: #8b5cf6;
+            --sem4: #f59e0b;
+            --sem5: #10b981;
+            --sem6: #ec4899;
+            --sem7: #f97316;
+            --sem8: #ef4444;
+            --highlight-bg: linear-gradient(135deg,rgba(108,99,255,.12),rgba(59,130,246,.10));
+            --highlight-border: rgba(108,99,255,.35);
+            --praktik-bg: rgba(16,185,129,.12);
+            --praktik-border: rgba(16,185,129,.40);
+            --radius: 14px;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family:'Inter',system-ui,-apple-system,sans-serif;
+            background:var(--bg);
+            color:var(--text);
+            line-height:1.65;
+            padding:0 0 80px;
+        }
+
+        /* -- Hero / Header -- */
+        .hero {
+            position:relative;
+            overflow:hidden;
+            padding:72px 40px 56px;
+            text-align:center;
+            background:linear-gradient(160deg,#12132a 0%,#1b1045 40%,#0e1a3a 100%);
+        }
+        .hero::before {
+            content:'';
+            position:absolute;
+            inset:0;
+            background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(108,99,255,.22),transparent 70%);
+            pointer-events:none;
+        }
+        .hero h1 {
+            font-size:clamp(1.6rem,3.4vw,2.6rem);
+            font-weight:800;
+            letter-spacing:-.02em;
+            background:linear-gradient(135deg,#c7d2fe,#818cf8,#6c63ff);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+            margin-bottom:12px;
+        }
+        .hero .subtitle {
+            font-size:clamp(.95rem,1.6vw,1.15rem);
+            color:var(--text-muted);
+            max-width:680px;
+            margin:0 auto;
+        }
+        .hero .badge-row {
+            margin-top:28px;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:10px;
+        }
+        .badge {
+            display:inline-flex;
+            align-items:center;
+            gap:6px;
+            padding:7px 16px;
+            border-radius:999px;
+            font-size:.78rem;
+            font-weight:600;
+            border:1px solid var(--border);
+            background:var(--surface);
+            backdrop-filter:blur(8px);
+        }
+        .badge.accent { border-color:var(--highlight-border); background:rgba(108,99,255,.10); color:#a5b4fc; }
+
+        /* -- Container -- */
+        .container { max-width:1440px; margin:0 auto; padding:0 28px; }
+
+        /* -- Section titles -- */
+        .section-title {
+            font-size:1.45rem;
+            font-weight:700;
+            margin:52px 0 8px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .section-title .dot {
+            width:10px;height:10px;border-radius:50%;display:inline-block;
+        }
+
+        /* -- Summary card -- */
+        .summary-card {
+            background:var(--surface);
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            padding:32px 36px;
+            margin:24px 0 36px;
+        }
+        .summary-card h3 { font-size:1.05rem; font-weight:700; margin-bottom:14px; color:#a5b4fc; }
+        .summary-card ul { list-style:none; }
+        .summary-card li {
+            position:relative;
+            padding-left:22px;
+            margin-bottom:10px;
+            font-size:.93rem;
+            color:var(--text-muted);
+        }
+        .summary-card li::before {
+            content:'\2726';
+            position:absolute;
+            left:0;
+            color:var(--accent);
+            font-size:.7rem;
+            top:4px;
+        }
+
+        /* -- Semester block -- */
+        .semester-block {
+            margin-bottom:48px;
+        }
+        .semester-header {
+            display:flex;
+            align-items:center;
+            gap:14px;
+            margin-bottom:18px;
+        }
+        .semester-header .pill {
+            padding:7px 20px;
+            border-radius:10px;
+            font-size:.82rem;
+            font-weight:700;
+            color:#fff;
+            text-transform:uppercase;
+            letter-spacing:.04em;
+        }
+        .semester-header .info {
+            font-size:.85rem;
+            color:var(--text-muted);
+        }
+
+        /* -- Table -- */
+        .lo-table {
+            width:100%;
+            border-collapse:separate;
+            border-spacing:0;
+            font-size:.84rem;
+            border-radius:var(--radius);
+            overflow:hidden;
+            border:1px solid var(--border);
+            background:var(--surface);
+        }
+        .lo-table thead th {
+            background:var(--surface2);
+            color:var(--text-muted);
+            font-weight:700;
+            text-transform:uppercase;
+            font-size:.72rem;
+            letter-spacing:.06em;
+            padding:14px 16px;
+            text-align:left;
+            border-bottom:1px solid var(--border);
+            position:sticky;
+            top:0;
+            z-index:2;
+        }
+        .lo-table tbody td {
+            padding:14px 16px;
+            vertical-align:top;
+            border-bottom:1px solid var(--border);
+        }
+        .lo-table tbody tr:last-child td { border-bottom:none; }
+        .lo-table tbody tr:hover { background:rgba(108,99,255,.04); }
+
+        .lo-table .col-no { width:42px; text-align:center; font-weight:700; color:var(--text-muted); }
+        .lo-table .col-mk { width:190px; font-weight:600; }
+        .lo-table .col-lo { width:42%; }
+        .lo-table .col-tools { width:25%; }
+
+        .lo-table .lo-list { list-style:none; padding:0; }
+        .lo-table .lo-list li { margin-bottom:7px; padding-left:18px; position:relative; }
+        .lo-table .lo-list li::before {
+            content:attr(data-num);
+            position:absolute;
+            left:0;
+            font-weight:700;
+            font-size:.72rem;
+            color:var(--accent);
+        }
+
+        /* -- Tool badges -- */
+        .tools-wrap {
+            display:flex;
+            flex-wrap:wrap;
+            gap:6px;
+        }
+        .tool-badge {
+            display:inline-flex;
+            align-items:center;
+            padding:4px 10px;
+            border-radius:6px;
+            font-size:.72rem;
+            font-weight:600;
+            background:rgba(108,99,255,.10);
+            border:1px solid rgba(108,99,255,.25);
+            color:#a5b4fc;
+            white-space:nowrap;
+            transition:all .2s ease;
+        }
+        .tool-badge:hover {
+            background:rgba(108,99,255,.18);
+            border-color:rgba(108,99,255,.45);
+            transform:translateY(-1px);
+        }
+
+        /* -- Concentration Card -- */
+        .concentration-card {
+            background:var(--surface);
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            padding:24px 28px;
+            margin-bottom:20px;
+        }
+        .concentration-card h4 {
+            font-size:.95rem;
+            font-weight:700;
+            color:#a5b4fc;
+            margin-bottom:14px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+
+        /* -- Output row -- */
+        .output-row {
+            margin-top:8px;
+            padding:10px 14px;
+            border-radius:8px;
+            background:rgba(245,158,11,.07);
+            border:1px solid rgba(245,158,11,.25);
+        }
+        .output-row strong { color:#fcd34d; font-size:.78rem; }
+        .output-row span { font-size:.8rem; color:var(--text-muted); }
+
+        /* -- CDC Legend -- */
+        .cdc-legend {
+            background:var(--surface);
+            border:1px solid var(--border);
+            border-radius:var(--radius);
+            padding:24px 28px;
+            margin:24px 0 36px;
+        }
+        .cdc-legend h3 { font-size:1.05rem; font-weight:700; margin-bottom:14px; color:#a5b4fc; }
+        .cdc-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+            gap:12px;
+        }
+        .cdc-item {
+            display:flex;
+            align-items:flex-start;
+            gap:10px;
+            padding:10px 14px;
+            border-radius:10px;
+            background:rgba(108,99,255,.05);
+            border:1px solid rgba(108,99,255,.12);
+        }
+        .cdc-item .cdc-num {
+            flex-shrink:0;
+            width:28px; height:28px;
+            display:flex; align-items:center; justify-content:center;
+            border-radius:8px;
+            background:rgba(108,99,255,.15);
+            color:#818cf8;
+            font-size:.72rem;
+            font-weight:700;
+        }
+        .cdc-item .cdc-info { font-size:.8rem; }
+        .cdc-item .cdc-title { font-weight:600; color:var(--text); display:block; margin-bottom:2px; }
+        .cdc-item .cdc-tools { color:var(--text-muted); font-size:.72rem; }
+
+        /* -- Footer -- */
+        .footer {
+            margin-top:56px;
+            text-align:center;
+            color:var(--text-muted);
+            font-size:.78rem;
+            padding:24px;
+            border-top:1px solid var(--border);
+        }
+
+        /* -- Export PDF Button -- */
+        .export-btn {
+            position:fixed;
+            bottom:32px;
+            right:32px;
+            z-index:1000;
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            padding:14px 28px;
+            border:none;
+            border-radius:14px;
+            font-family:'Inter',sans-serif;
+            font-size:.88rem;
+            font-weight:700;
+            color:#fff;
+            background:linear-gradient(135deg,#6c63ff 0%,#3b82f6 100%);
+            box-shadow:0 8px 32px rgba(108,99,255,.35), 0 2px 8px rgba(0,0,0,.2);
+            cursor:pointer;
+            transition:all .3s cubic-bezier(.4,0,.2,1);
+            letter-spacing:.02em;
+        }
+        .export-btn:hover {
+            transform:translateY(-3px) scale(1.03);
+            box-shadow:0 12px 40px rgba(108,99,255,.45), 0 4px 12px rgba(0,0,0,.3);
+        }
+        .export-btn:active {
+            transform:translateY(0) scale(.98);
+        }
+        .export-btn .btn-icon {
+            font-size:1.15rem;
+        }
+
+        /* -- Toast notification -- */
+        .toast {
+            position:fixed;
+            bottom:100px;
+            right:32px;
+            z-index:1001;
+            padding:14px 24px;
+            border-radius:12px;
+            background:rgba(16,185,129,.95);
+            color:#fff;
+            font-family:'Inter',sans-serif;
+            font-size:.85rem;
+            font-weight:600;
+            box-shadow:0 8px 24px rgba(16,185,129,.3);
+            transform:translateY(20px);
+            opacity:0;
+            transition:all .4s cubic-bezier(.4,0,.2,1);
+            pointer-events:none;
+        }
+        .toast.show {
+            transform:translateY(0);
+            opacity:1;
+        }
+
+        /* -- Responsive -- */
+        @media(max-width:900px){
+            .hero { padding:48px 20px 36px; }
+            .container { padding:0 12px; }
+            .lo-table { font-size:.78rem; }
+            .lo-table thead th, .lo-table tbody td { padding:10px 10px; }
+            .export-btn { bottom:20px; right:20px; padding:12px 22px; font-size:.82rem; }
+            .cdc-grid { grid-template-columns:1fr; }
+        }
+
+        /* -- Print / PDF-specific styles -- */
+        @media print {
+            @page { size: A4 portrait; margin: 10mm 8mm; }
+
+            /* CRITICAL: Prevent Chrome from rasterizing elements as images.
+               - Remove ALL overflow:hidden (causes rasterization with border-radius)
+               - Remove ALL backdrop-filter / filter (causes rasterization)
+               - Remove ALL border-radius (triggers clipping layers)
+               - Remove ALL box-shadow (can trigger rasterization)
+               - Remove ALL transform (triggers compositing layers)
+               - Set -webkit-text-fill-color explicitly on every text element
+               - Do NOT use blanket print-color-adjust:exact on * (causes over-rasterization)
+            */
+
+            * {
+                -webkit-text-fill-color: initial;
+                overflow: visible !important;
+                border-radius: 0 !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                filter: none !important;
+                box-shadow: none !important;
+                text-shadow: none !important;
+                transform: none !important;
+                transition: none !important;
+                animation: none !important;
+            }
+
+            body {
+                background: #fff !important;
+                color: #000 !important;
+                -webkit-text-fill-color: #000 !important;
+                padding: 0 !important;
+                font-size: 6.5pt !important;
+                line-height: 1.35 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .export-btn, .toast { display: none !important; }
+
+            .hero {
+                background: #fff !important;
+                padding: 12px 8px 10px !important;
+                page-break-after: avoid;
+                text-align: center;
+                border-bottom: 2px solid #000 !important;
+                overflow: visible !important;
+            }
+            .hero::before { display: none !important; }
+
+            /* CRITICAL: Remove gradient text effect so text is real selectable text */
+            .hero h1 {
+                -webkit-text-fill-color: #000 !important;
+                color: #000 !important;
+                background: none !important;
+                background-clip: initial !important;
+                -webkit-background-clip: initial !important;
+                font-size: 12pt !important;
+                font-weight: 800 !important;
+            }
+
+            .hero .subtitle { color: #333 !important; -webkit-text-fill-color: #333 !important; font-size: 7pt !important; }
+            .badge { background: #fff !important; border: 1px solid #999 !important; color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 5.5pt !important; padding: 2px 6px !important; }
+            .badge.accent { background: #fff !important; border-color: #666 !important; color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .container { max-width: 100% !important; padding: 0 2px !important; }
+            .section-title { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 9pt !important; margin-top: 10px !important; margin-bottom: 3px !important; page-break-after: avoid; border-bottom: 1px solid #000; padding-bottom: 2px; }
+            .section-title .dot { background: #000 !important; }
+            .summary-card, .cdc-legend { background: #fff !important; border: 1px solid #999 !important; color: #000 !important; -webkit-text-fill-color: #000 !important; padding: 6px 8px !important; margin: 4px 0 8px !important; page-break-inside: avoid; overflow: visible !important; }
+            .summary-card h3, .cdc-legend h3 { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 7pt !important; font-weight: 700 !important; }
+            .summary-card li { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 6pt !important; margin-bottom: 2px !important; }
+            .summary-card li::before { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .summary-card strong { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .cdc-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 4px !important; }
+            .cdc-item { background: #f5f5f5 !important; border: 1px solid #ccc !important; padding: 4px 6px !important; -webkit-print-color-adjust: exact !important; }
+            .cdc-item .cdc-num { background: #ddd !important; color: #000 !important; -webkit-text-fill-color: #000 !important; width: 18px !important; height: 18px !important; font-size: 5.5pt !important; -webkit-print-color-adjust: exact !important; }
+            .cdc-item .cdc-info { font-size: 5.5pt !important; color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .cdc-item .cdc-title { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 6pt !important; }
+            .cdc-item .cdc-tools { color: #333 !important; -webkit-text-fill-color: #333 !important; font-size: 5pt !important; }
+            .semester-block { margin-bottom: 8px !important; }
+            .semester-header { margin-bottom: 3px !important; }
+            .semester-header .pill { background: #000 !important; color: #fff !important; -webkit-text-fill-color: #fff !important; font-size: 6pt !important; padding: 2px 8px !important; -webkit-print-color-adjust: exact !important; }
+            .semester-header .info { color: #333 !important; -webkit-text-fill-color: #333 !important; font-size: 6pt !important; }
+
+            /* CRITICAL: Tables - remove overflow:hidden to prevent rasterization */
+            .lo-table { background: #fff !important; border: 1px solid #000 !important; font-size: 5.5pt !important; border-collapse: collapse !important; overflow: visible !important; }
+            .lo-table .col-no { width: 22px !important; }
+            .lo-table .col-mk { width: 100px !important; font-size: 5.5pt !important; }
+            .lo-table .col-lo { width: auto !important; }
+            .lo-table .col-tools { width: 120px !important; }
+            .lo-table thead th { background: #e0e0e0 !important; color: #000 !important; -webkit-text-fill-color: #000 !important; border: 1px solid #000 !important; font-size: 5pt !important; padding: 3px 3px !important; position: static !important; -webkit-print-color-adjust: exact !important; }
+            .lo-table tbody td { color: #000 !important; -webkit-text-fill-color: #000 !important; border: 1px solid #999 !important; padding: 2px 3px !important; background: #fff !important; }
+            .lo-table tbody tr:nth-child(even) td { background: #f5f5f5 !important; -webkit-print-color-adjust: exact !important; }
+            .lo-table tbody tr:hover { background: transparent !important; }
+            .lo-table .lo-list li { font-size: 5pt !important; margin-bottom: 1px !important; color: #000 !important; -webkit-text-fill-color: #000 !important; padding-left: 10px !important; }
+            .lo-table .lo-list li::before { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 5pt !important; }
+            .tools-wrap { gap: 2px !important; }
+            .tool-badge { background: #eee !important; border: 1px solid #999 !important; color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 4.5pt !important; padding: 1px 3px !important; -webkit-print-color-adjust: exact !important; }
+            .concentration-card { background: #fff !important; border: 1px solid #999 !important; padding: 4px 6px !important; margin-bottom: 6px !important; page-break-inside: avoid; overflow: visible !important; }
+            .concentration-card h4 { color: #000 !important; -webkit-text-fill-color: #000 !important; font-size: 7pt !important; margin-bottom: 4px !important; }
+            .output-row { background: #fff !important; border: 1px solid #999 !important; }
+            .output-row strong { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .output-row span { color: #333 !important; -webkit-text-fill-color: #333 !important; }
+            .footer { color: #666 !important; -webkit-text-fill-color: #666 !important; border-top: 1px solid #000 !important; font-size: 6pt !important; padding: 8px !important; }
+            small { color: #333 !important; -webkit-text-fill-color: #333 !important; font-size: 5pt !important; }
+            strong { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            h2, h3 { page-break-after: avoid !important; -webkit-text-fill-color: #000 !important; }
+            tr { page-break-inside: avoid !important; }
+            .semester-block { page-break-inside: auto !important; }
+            .lo-table { page-break-inside: auto !important; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>Perbaikan &amp; Penyelarasan Learning Outcomes</h1>
+    <p class="subtitle">Program Studi Data Science -- Diselaraskan dengan Kebutuhan Industri &amp; Career Development Center (CDC)</p>
+    <div class="badge-row">
+        <span class="badge">8 Semester + 2 Short Semester</span>
+        <span class="badge">152 SKS Total</span>
+        <span class="badge accent">3 Concentration Tracks</span>
+        <span class="badge">MBKM Semester 6 &amp; 7</span>
+        <span class="badge accent">CDC-Aligned Tools</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <h2 class="section-title"><span class="dot" style="background:var(--accent)"></span> Ringkasan Perbaikan</h2>
+    <div class="summary-card">
+        <h3>Perubahan Strategis yang Dilakukan</h3>
+        <ul>
+            <li>Merestrukturisasi learning outcomes agar <strong>berbasis kompetensi terukur</strong> (menggunakan kata kerja Bloom's Taxonomy: Apply, Implement, Design, Evaluate).</li>
+            <li>Memperkuat mata kuliah semester awal dengan <strong>proyek praktik langsung</strong> agar mahasiswa memiliki portofolio dan siap kerja.</li>
+            <li>Menambahkan <strong>jalur konsentrasi</strong> di Semester 5 untuk spesialisasi: Data Engineering, AI/ML, Business Intelligence.</li>
+            <li>Mengintegrasikan <strong>program MBKM</strong> di Semester 6 dan 7 untuk pengalaman industri langsung.</li>
+            <li>Menambahkan <strong>output terukur per semester</strong>: mini-project, portofolio, capstone project, dan publikasi ilmiah.</li>
+            <li>Menyelaraskan kurikulum dengan <strong>kebutuhan CDC Fakultas IT</strong> sehingga lulusan siap memasuki pasar kerja.</li>
+            <li>Menambahkan <strong>Learning Tools</strong> yang relevan dengan industri pada setiap mata kuliah, diselaraskan dengan kebutuhan CDC.</li>
+        </ul>
+    </div>
+
+    <h2 class="section-title"><span class="dot" style="background:var(--sem5)"></span> Kebutuhan CDC Fakultas IT</h2>
+    <div class="cdc-legend">
+        <h3>Posisi Kerja &amp; Tools yang Dibutuhkan</h3>
+        <div class="cdc-grid">
+            <div class="cdc-item"><span class="cdc-num">1</span><div class="cdc-info"><span class="cdc-title">Software Engineering</span><span class="cdc-tools">JavaScript, Python, Java, React, Next.js, Laravel, Node.js, GitHub, Docker</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">2</span><div class="cdc-info"><span class="cdc-title">Web &amp; CMS Development</span><span class="cdc-tools">WordPress, Elementor, HTML, CSS, JavaScript</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">3</span><div class="cdc-info"><span class="cdc-title">DevOps &amp; Infrastructure</span><span class="cdc-tools">Docker, Kubernetes, Jenkins, GitHub Actions, AWS, GCP, Azure, Terraform</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">4</span><div class="cdc-info"><span class="cdc-title">Data &amp; Analytics</span><span class="cdc-tools">SQL, Excel, Python (Pandas), Power BI, Tableau</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">5</span><div class="cdc-info"><span class="cdc-title">QA &amp; Testing</span><span class="cdc-tools">Test case tools, Selenium</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">6</span><div class="cdc-info"><span class="cdc-title">System &amp; Business Analyst</span><span class="cdc-tools">Draw.io, Lucidchart, Notion, Confluence</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">7</span><div class="cdc-info"><span class="cdc-title">UI/UX &amp; Product Design</span><span class="cdc-tools">Figma, Adobe XD, Maze</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">8</span><div class="cdc-info"><span class="cdc-title">Product Management</span><span class="cdc-tools">Notion, Jira, Google Docs</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">9</span><div class="cdc-info"><span class="cdc-title">IT Security &amp; Cybersecurity</span><span class="cdc-tools">Kali Linux, Nmap, Wireshark</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">10</span><div class="cdc-info"><span class="cdc-title">IoT</span><span class="cdc-tools">Arduino, ESP32, MQTT</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">11</span><div class="cdc-info"><span class="cdc-title">Game Development</span><span class="cdc-tools">Unity, Unreal Engine</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">12</span><div class="cdc-info"><span class="cdc-title">IT Support &amp; Compliance</span><span class="cdc-tools">OS knowledge, Basic networking tools</span></div></div>
+            <div class="cdc-item"><span class="cdc-num">13</span><div class="cdc-info"><span class="cdc-title">Solution Engineer</span><span class="cdc-tools">Postman (API), CRM/ERP tools</span></div></div>
+        </div>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem1);">Semester 1</span>
+            <span class="info">20 SKS &bull; Fondasi Data Science &amp; Kompetensi Dasar</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Foundations of Data Science<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply fundamental concepts of data science to real-world problems</li>
+                            <li data-num="2.">Implement basic statistical methods for data analysis</li>
+                            <li data-num="3.">Develop data processing pipelines</li>
+                            <li data-num="4.">Interpret results of data analysis for decision support</li>
+                            <li data-num="5.">Evaluate data sources for quality and relevance</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Jupyter Notebook</span>
+                            <span class="tool-badge">Google Colab</span>
+                            <span class="tool-badge">Pandas</span>
+                            <span class="tool-badge">NumPy</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Design Thinking<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply design thinking methodology to identify and solve problems</li>
+                            <li data-num="2.">Demonstrate empathy in understanding user needs and requirements</li>
+                            <li data-num="3.">Generate innovative solutions through ideation techniques</li>
+                            <li data-num="4.">Develop and test prototypes iteratively</li>
+                            <li data-num="5.">Evaluate solutions based on user feedback and technical feasibility</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Figma</span>
+                            <span class="tool-badge">Miro</span>
+                            <span class="tool-badge">Draw.io</span>
+                            <span class="tool-badge">Notion</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Discrete Mathematics<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply mathematical logic and proof techniques in problem-solving</li>
+                            <li data-num="2.">Analyze combinatorial problems using appropriate counting techniques</li>
+                            <li data-num="3.">Understand set theory and its applications in computing</li>
+                            <li data-num="4.">Model problems using graph theory and relations</li>
+                            <li data-num="5.">Apply discrete mathematical concepts to computational problems</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">MATLAB</span>
+                            <span class="tool-badge">LaTeX</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Human-Computer Interaction<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply principles of user-centered design in interface development</li>
+                            <li data-num="2.">Analyze user requirements and translate them into interface specifications</li>
+                            <li data-num="3.">Design interfaces that optimize usability and user experience</li>
+                            <li data-num="4.">Evaluate interfaces using appropriate testing methodologies</li>
+                            <li data-num="5.">Apply accessibility standards in interface design</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Figma</span>
+                            <span class="tool-badge">Adobe XD</span>
+                            <span class="tool-badge">Maze</span>
+                            <span class="tool-badge">InVision</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Algorithms<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Analyze algorithmic problems and develop efficient solutions</li>
+                            <li data-num="2.">Implement classic algorithms for sorting, searching, and graph traversal</li>
+                            <li data-num="3.">Apply algorithm design techniques to solve computational problems</li>
+                            <li data-num="4.">Analyze the time and space complexity of algorithms</li>
+                            <li data-num="5.">Evaluate and optimize algorithmic solutions</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">C++</span>
+                            <span class="tool-badge">LeetCode</span>
+                            <span class="tool-badge">GitHub</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Mathematical and Statistical Foundations<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply mathematical concepts essential for data science</li>
+                            <li data-num="2.">Implement statistical tests for hypothesis testing</li>
+                            <li data-num="3.">Apply probability theory in modeling uncertainty</li>
+                            <li data-num="4.">Interpret statistical results in context</li>
+                            <li data-num="5.">Develop statistical models for data analysis</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">R</span>
+                            <span class="tool-badge">Excel</span>
+                            <span class="tool-badge">SPSS</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Networks<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Explain fundamental network concepts and architectures</li>
+                            <li data-num="2.">Apply network protocols for data science applications</li>
+                            <li data-num="3.">Analyze network data and traffic patterns</li>
+                            <li data-num="4.">Implement basic network algorithms and models</li>
+                            <li data-num="5.">Evaluate network performance and reliability</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Wireshark</span>
+                            <span class="tool-badge">Cisco Packet Tracer</span>
+                            <span class="tool-badge">Nmap</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">8</td>
+                    <td class="col-mk">Differential Calculus<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply differentiation techniques to mathematical functions</li>
+                            <li data-num="2.">Analyze rates of change and optimization problems</li>
+                            <li data-num="3.">Implement numerical differentiation algorithms</li>
+                            <li data-num="4.">Apply calculus concepts to data science problems</li>
+                            <li data-num="5.">Interpret derivatives in the context of data analysis</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">MATLAB</span>
+                            <span class="tool-badge">Wolfram Alpha</span>
+                            <span class="tool-badge">GeoGebra</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem2);">Semester 2</span>
+            <span class="info">20 SKS &bull; Pemrograman Lanjut, Database &amp; Data Wrangling</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Object-Oriented Programming<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply object-oriented principles (encapsulation, inheritance, polymorphism)</li>
+                            <li data-num="2.">Design programs using class hierarchies and relationships</li>
+                            <li data-num="3.">Implement object-oriented solutions to complex problems</li>
+                            <li data-num="4.">Apply design patterns in software development</li>
+                            <li data-num="5.">Evaluate and refactor object-oriented code for improved maintainability</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Java</span>
+                            <span class="tool-badge">GitHub/GitLab</span>
+                            <span class="tool-badge">VS Code</span>
+                            <span class="tool-badge">UML Tools</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Database Systems<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design database schemas using entity-relationship modeling</li>
+                            <li data-num="2.">Implement relational and non-relational database solutions</li>
+                            <li data-num="3.">Apply SQL and query optimization techniques</li>
+                            <li data-num="4.">Develop data access layers for applications</li>
+                            <li data-num="5.">Evaluate database performance and scalability</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">MySQL</span>
+                            <span class="tool-badge">PostgreSQL</span>
+                            <span class="tool-badge">MongoDB</span>
+                            <span class="tool-badge">SQL</span>
+                            <span class="tool-badge">DBeaver</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Data Structures<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Implement fundamental data structures for efficient data organization</li>
+                            <li data-num="2.">Apply appropriate data structures for different problem domains</li>
+                            <li data-num="3.">Analyze the time and space complexity of data structure operations</li>
+                            <li data-num="4.">Implement custom data structures for specific requirements</li>
+                            <li data-num="5.">Evaluate data structure selection impact on algorithm performance</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Java</span>
+                            <span class="tool-badge">C++</span>
+                            <span class="tool-badge">GitHub</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Web Client Development<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Develop responsive web interfaces using HTML, CSS, and JavaScript</li>
+                            <li data-num="2.">Apply front-end frameworks to build interactive web applications</li>
+                            <li data-num="3.">Implement client-side validation and error handling</li>
+                            <li data-num="4.">Integrate web interfaces with backend services via APIs</li>
+                            <li data-num="5.">Optimize web applications for performance and accessibility</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">HTML</span>
+                            <span class="tool-badge">CSS</span>
+                            <span class="tool-badge">JavaScript</span>
+                            <span class="tool-badge">React</span>
+                            <span class="tool-badge">Bootstrap</span>
+                            <span class="tool-badge">VS Code</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Statistical Thinking<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply statistical inference techniques to draw conclusions from data</li>
+                            <li data-num="2.">Design experiments and observational studies</li>
+                            <li data-num="3.">Implement resampling methods for uncertainty estimation</li>
+                            <li data-num="4.">Interpret confidence intervals and hypothesis tests</li>
+                            <li data-num="5.">Evaluate statistical models for goodness of fit</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">R</span>
+                            <span class="tool-badge">SPSS</span>
+                            <span class="tool-badge">Pandas</span>
+                            <span class="tool-badge">Matplotlib</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Communication Protocols<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply communication protocol principles for data transmission</li>
+                            <li data-num="2.">Implement data encoding and decoding techniques</li>
+                            <li data-num="3.">Analyze protocol performance and reliability</li>
+                            <li data-num="4.">Design communication protocols for specific applications</li>
+                            <li data-num="5.">Evaluate protocol security and efficiency</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Wireshark</span>
+                            <span class="tool-badge">Postman</span>
+                            <span class="tool-badge">cURL</span>
+                            <span class="tool-badge">MQTT</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Data Wrangling<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Clean and preprocess raw data for analysis</li>
+                            <li data-num="2.">Transform data into appropriate formats for different analyses</li>
+                            <li data-num="3.">Handle missing data using appropriate techniques</li>
+                            <li data-num="4.">Integrate data from multiple sources</li>
+                            <li data-num="5.">Automate data preparation workflows</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Pandas</span>
+                            <span class="tool-badge">NumPy</span>
+                            <span class="tool-badge">OpenRefine</span>
+                            <span class="tool-badge">Excel</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:linear-gradient(135deg,var(--sem1),var(--sem2));">Short Semester 1</span>
+            <span class="info">9 SKS &bull; Independent Study / Remedial / Elective</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Keterangan</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Independent Study Project<br><small>9 SKS</small></td>
+                    <td class="col-lo">Proyek mandiri berbasis data science</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai Topik</span><span class="tool-badge">GitHub</span><span class="tool-badge">Python</span></div></td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Remedial Course<br><small>9 SKS</small></td>
+                    <td class="col-lo">Mata kuliah remedial (bila diperlukan)</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai MK</span></div></td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Elective Course<br><small>9 SKS</small></td>
+                    <td class="col-lo">Mata kuliah pilihan sesuai minat</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai MK</span></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem3);">Semester 3</span>
+            <span class="info">18 SKS &bull; Full-Stack Development, Visualisasi &amp; Metode Numerik</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Web Application Development<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design and implement full-stack web applications using modern frameworks and technologies</li>
+                            <li data-num="2.">Apply MVC architecture principles and design patterns in web development</li>
+                            <li data-num="3.">Implement authentication, authorization, and security measures in web applications</li>
+                            <li data-num="4.">Develop RESTful web services and APIs for client-server communication</li>
+                            <li data-num="5.">Deploy and maintain web applications in production environments</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Node.js</span>
+                            <span class="tool-badge">React</span>
+                            <span class="tool-badge">Next.js</span>
+                            <span class="tool-badge">Laravel</span>
+                            <span class="tool-badge">Express.js</span>
+                            <span class="tool-badge">GitHub</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Advanced Database Systems<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design and implement advanced database solutions for complex data management requirements</li>
+                            <li data-num="2.">Apply optimization techniques for database performance in high-volume environments</li>
+                            <li data-num="3.">Implement transaction management and concurrency control mechanisms</li>
+                            <li data-num="4.">Design and develop NoSQL database solutions for specific use cases</li>
+                            <li data-num="5.">Evaluate database architectures for scalability, reliability, and security</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">PostgreSQL</span>
+                            <span class="tool-badge">MongoDB</span>
+                            <span class="tool-badge">Redis</span>
+                            <span class="tool-badge">Cassandra</span>
+                            <span class="tool-badge">DBeaver</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Stochastic Modeling<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply probability theory to model uncertainty in real-world systems</li>
+                            <li data-num="2.">Develop stochastic processes to represent dynamic random phenomena</li>
+                            <li data-num="3.">Implement Markov chains and queuing theory models for system analysis</li>
+                            <li data-num="4.">Analyze time series data using appropriate stochastic models</li>
+                            <li data-num="5.">Evaluate model accuracy and make predictions with confidence intervals</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">R</span>
+                            <span class="tool-badge">SciPy</span>
+                            <span class="tool-badge">SimPy</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Numerical Methods<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Implement numerical solutions for mathematical problems using computational techniques</li>
+                            <li data-num="2.">Apply numerical methods for solving differential equations and linear systems</li>
+                            <li data-num="3.">Analyze algorithm stability, convergence, and error propagation</li>
+                            <li data-num="4.">Develop efficient implementations of numerical algorithms</li>
+                            <li data-num="5.">Evaluate and select appropriate numerical methods for specific problem domains</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">MATLAB</span>
+                            <span class="tool-badge">NumPy</span>
+                            <span class="tool-badge">SciPy</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Advanced Computational Mathematics<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply advanced mathematical techniques to solve computational problems</li>
+                            <li data-num="2.">Implement algorithms for numerical optimization and approximation</li>
+                            <li data-num="3.">Analyze mathematical models using computational approaches</li>
+                            <li data-num="4.">Develop solutions for complex mathematical problems using appropriate software tools</li>
+                            <li data-num="5.">Evaluate computational methods for efficiency, accuracy, and applicability</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">MATLAB</span>
+                            <span class="tool-badge">Wolfram Alpha</span>
+                            <span class="tool-badge">LaTeX</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Data Visualization<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design effective visual representations of complex data sets</li>
+                            <li data-num="2.">Implement interactive data visualizations using modern visualization libraries and tools</li>
+                            <li data-num="3.">Apply perceptual and cognitive principles to optimize information communication</li>
+                            <li data-num="4.">Develop dashboards and visual analytics solutions for different audiences</li>
+                            <li data-num="5.">Evaluate visualizations for effectiveness, accuracy, and ethical considerations</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Tableau</span>
+                            <span class="tool-badge">Power BI</span>
+                            <span class="tool-badge">D3.js</span>
+                            <span class="tool-badge">Matplotlib</span>
+                            <span class="tool-badge">Seaborn</span>
+                            <span class="tool-badge">Plotly</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Optimization Methods<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Formulate optimization problems from real-world scenarios</li>
+                            <li data-num="2.">Apply linear, nonlinear, and integer programming techniques to solve optimization problems</li>
+                            <li data-num="3.">Implement metaheuristic algorithms for complex optimization challenges</li>
+                            <li data-num="4.">Analyze sensitivity and robustness of optimization solutions</li>
+                            <li data-num="5.">Evaluate optimization methods for computational efficiency and solution quality</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">SciPy</span>
+                            <span class="tool-badge">PuLP</span>
+                            <span class="tool-badge">MATLAB</span>
+                            <span class="tool-badge">Gurobi</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem4);">Semester 4</span>
+            <span class="info">18 SKS &bull; Text Mining, Big Data &amp; Advanced Analytics</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Text Mining<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply natural language processing techniques to extract information from unstructured text</li>
+                            <li data-num="2.">Implement text preprocessing, tokenization, and normalization methods</li>
+                            <li data-num="3.">Develop text classification and clustering models for document analysis</li>
+                            <li data-num="4.">Apply sentiment analysis and topic modeling algorithms to text corpora</li>
+                            <li data-num="5.">Evaluate text mining solutions for accuracy, scalability, and business relevance</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">NLTK</span>
+                            <span class="tool-badge">spaCy</span>
+                            <span class="tool-badge">Hugging Face</span>
+                            <span class="tool-badge">Scikit-learn</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Data Warehousing and Mining<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design data warehouse architectures to support business intelligence requirements</li>
+                            <li data-num="2.">Implement ETL processes for data integration from heterogeneous sources</li>
+                            <li data-num="3.">Apply dimensional modeling techniques for analytical data representation</li>
+                            <li data-num="4.">Develop data mining algorithms for pattern discovery and prediction</li>
+                            <li data-num="5.">Evaluate data warehousing and mining solutions for performance and business value</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">SQL</span>
+                            <span class="tool-badge">Pentaho</span>
+                            <span class="tool-badge">Apache Spark</span>
+                            <span class="tool-badge">Power BI</span>
+                            <span class="tool-badge">Tableau</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Technical / Professional Writing<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Create clear and concise technical documentation for diverse audiences</li>
+                            <li data-num="2.">Apply proper structure and organization in technical and business documents</li>
+                            <li data-num="3.">Develop data-driven reports that effectively communicate analytical findings</li>
+                            <li data-num="4.">Implement visualizations and formatting to enhance document readability</li>
+                            <li data-num="5.">Evaluate technical documentation for clarity, accuracy, and audience appropriateness</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Notion</span>
+                            <span class="tool-badge">Confluence</span>
+                            <span class="tool-badge">Google Docs</span>
+                            <span class="tool-badge">Markdown</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Mobile Computing<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design mobile applications that incorporate data science capabilities</li>
+                            <li data-num="2.">Implement data collection and processing for mobile sensing applications</li>
+                            <li data-num="3.">Apply offline data analytics techniques for mobile environments</li>
+                            <li data-num="4.">Develop synchronization strategies for distributed mobile data</li>
+                            <li data-num="5.">Evaluate mobile applications for performance, battery efficiency, and user experience</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Flutter</span>
+                            <span class="tool-badge">React Native</span>
+                            <span class="tool-badge">Android Studio</span>
+                            <span class="tool-badge">Firebase</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Big Data Analytics<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply distributed computing frameworks for large-scale data processing</li>
+                            <li data-num="2.">Implement parallel algorithms for big data analysis</li>
+                            <li data-num="3.">Develop data pipelines for processing structured and unstructured big data</li>
+                            <li data-num="4.">Apply real-time analytics techniques for streaming data</li>
+                            <li data-num="5.">Evaluate big data solutions for scalability, fault tolerance, and processing efficiency</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Apache Spark</span>
+                            <span class="tool-badge">Hadoop</span>
+                            <span class="tool-badge">Kafka</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Databricks</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Advanced Methods for Data Analytics<br><small>3 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply advanced statistical methods for complex data analysis problems</li>
+                            <li data-num="2.">Implement ensemble and deep learning techniques for predictive modeling</li>
+                            <li data-num="3.">Develop feature engineering strategies to improve model performance</li>
+                            <li data-num="4.">Apply dimensionality reduction and regularization methods for high-dimensional data</li>
+                            <li data-num="5.">Evaluate advanced analytics methods for accuracy, interpretability, and computational efficiency</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Scikit-learn</span>
+                            <span class="tool-badge">TensorFlow</span>
+                            <span class="tool-badge">XGBoost</span>
+                            <span class="tool-badge">MLflow</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Data Privacy and Security<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply privacy-preserving data mining techniques in analytics workflows</li>
+                            <li data-num="2.">Implement data anonymization and pseudonymization methods</li>
+                            <li data-num="3.">Develop data governance frameworks for privacy compliance</li>
+                            <li data-num="4.">Apply security measures for protecting sensitive data throughout its lifecycle</li>
+                            <li data-num="5.">Evaluate privacy and security solutions against regulatory requirements and ethical standards</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Kali Linux</span>
+                            <span class="tool-badge">Wireshark</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">OWASP ZAP</span>
+                            <span class="tool-badge">Nmap</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:linear-gradient(135deg,var(--sem4),var(--sem5));">Short Semester 2</span>
+            <span class="info">9 SKS &bull; Independent Study / Remedial / Elective</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Keterangan</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Independent Study Project<br><small>9 SKS</small></td>
+                    <td class="col-lo">Proyek mandiri spesialisasi data science</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai Topik</span><span class="tool-badge">GitHub</span><span class="tool-badge">Python</span></div></td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Remedial Course<br><small>9 SKS</small></td>
+                    <td class="col-lo">Mata kuliah remedial (bila diperlukan)</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai MK</span></div></td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Elective Course<br><small>9 SKS</small></td>
+                    <td class="col-lo">Mata kuliah pilihan sesuai minat</td>
+                    <td class="col-tools"><div class="tools-wrap"><span class="tool-badge">Sesuai MK</span></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem5);">Semester 5</span>
+            <span class="info">18 SKS &bull; Concentration Tracks (pilih salah satu) + Professional Ethics</span>
+        </div>
+
+        <div class="concentration-card">
+            <h4>Concentration I: Data Engineering and Big Data Analytics</h4>
+            <table class="lo-table">
+                <thead>
+                    <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-no">1</td>
+                        <td class="col-mk">Big Data Infrastructure<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design scalable infrastructure architectures for big data processing</li>
+                                <li data-num="2.">Implement distributed storage systems for large-scale data management</li>
+                                <li data-num="3.">Apply resource allocation and scheduling techniques in big data clusters</li>
+                                <li data-num="4.">Configure big data platforms for high availability and fault tolerance</li>
+                                <li data-num="5.">Evaluate infrastructure solutions for performance, scalability, and cost-effectiveness</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Hadoop</span>
+                                <span class="tool-badge">Apache Spark</span>
+                                <span class="tool-badge">HDFS</span>
+                                <span class="tool-badge">YARN</span>
+                                <span class="tool-badge">Mesos</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">2</td>
+                        <td class="col-mk">Distributed Systems<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design distributed system architectures for data-intensive applications</li>
+                                <li data-num="2.">Implement distributed algorithms for coordination and consensus</li>
+                                <li data-num="3.">Apply fault tolerance and recovery mechanisms in distributed environments</li>
+                                <li data-num="4.">Develop distributed data processing applications using modern frameworks</li>
+                                <li data-num="5.">Evaluate distributed systems for consistency, availability, and partition tolerance</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Apache Kafka</span>
+                                <span class="tool-badge">ZooKeeper</span>
+                                <span class="tool-badge">gRPC</span>
+                                <span class="tool-badge">Docker</span>
+                                <span class="tool-badge">Kubernetes</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">3</td>
+                        <td class="col-mk">Data Pipeline Development<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design end-to-end data pipelines for diverse data sources and targets</li>
+                                <li data-num="2.">Implement batch and stream processing components in data workflows</li>
+                                <li data-num="3.">Apply data quality and validation techniques throughout the pipeline</li>
+                                <li data-num="4.">Develop monitoring and error handling mechanisms for pipeline reliability</li>
+                                <li data-num="5.">Evaluate data pipelines for throughput, latency, and fault resilience</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Apache Airflow</span>
+                                <span class="tool-badge">Luigi</span>
+                                <span class="tool-badge">Prefect</span>
+                                <span class="tool-badge">dbt</span>
+                                <span class="tool-badge">Python</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">4</td>
+                        <td class="col-mk">Cloud Computing<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Deploy big data processing workloads on cloud platforms</li>
+                                <li data-num="2.">Implement cloud-native storage solutions for data engineering</li>
+                                <li data-num="3.">Apply auto-scaling and resource optimization in cloud environments</li>
+                                <li data-num="4.">Develop infrastructure-as-code for reproducible cloud deployments</li>
+                                <li data-num="5.">Evaluate cloud service options for cost, performance, and compliance requirements</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">AWS</span>
+                                <span class="tool-badge">GCP</span>
+                                <span class="tool-badge">Azure</span>
+                                <span class="tool-badge">Terraform</span>
+                                <span class="tool-badge">Docker</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">5</td>
+                        <td class="col-mk">ETL Processes<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design robust ETL workflows for complex data integration scenarios</li>
+                                <li data-num="2.">Implement transformation logic for data cleansing and standardization</li>
+                                <li data-num="3.">Apply incremental loading and change data capture techniques</li>
+                                <li data-num="4.">Develop metadata management and lineage tracking in ETL processes</li>
+                                <li data-num="5.">Evaluate ETL solutions for reliability, maintainability, and performance</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Apache NiFi</span>
+                                <span class="tool-badge">Talend</span>
+                                <span class="tool-badge">Informatica</span>
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">SQL</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">6</td>
+                        <td class="col-mk">Data Lakes<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design data lake architectures that support diverse analytical workloads</li>
+                                <li data-num="2.">Implement data governance and catalog systems for data discovery</li>
+                                <li data-num="3.">Apply schema-on-read approaches for flexible data analysis</li>
+                                <li data-num="4.">Develop data lake processing patterns for batch and interactive queries</li>
+                                <li data-num="5.">Evaluate data lake implementations for scalability, security, and analytical capabilities</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">AWS S3</span>
+                                <span class="tool-badge">Delta Lake</span>
+                                <span class="tool-badge">Apache Iceberg</span>
+                                <span class="tool-badge">Hive</span>
+                                <span class="tool-badge">Presto</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concentration-card">
+            <h4>Concentration II: Artificial Intelligence (AI) and Machine Learning (ML) Development</h4>
+            <table class="lo-table">
+                <thead>
+                    <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-no">1</td>
+                        <td class="col-mk">Deep Learning<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design and implement neural network architectures</li>
+                                <li data-num="2.">Apply deep learning algorithms to solve complex problems</li>
+                                <li data-num="3.">Train and optimize deep learning models</li>
+                                <li data-num="4.">Evaluate deep learning models for performance and generalization</li>
+                                <li data-num="5.">Implement transfer learning techniques for resource efficiency</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">TensorFlow</span>
+                                <span class="tool-badge">PyTorch</span>
+                                <span class="tool-badge">Keras</span>
+                                <span class="tool-badge">CUDA</span>
+                                <span class="tool-badge">Google Colab</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">2</td>
+                        <td class="col-mk">Natural Language Processing (NLP)<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply text preprocessing techniques for NLP tasks</li>
+                                <li data-num="2.">Implement language models for text generation and analysis</li>
+                                <li data-num="3.">Design and develop sentiment analysis applications</li>
+                                <li data-num="4.">Apply named entity recognition and information extraction</li>
+                                <li data-num="5.">Evaluate NLP models for accuracy and generalization</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Hugging Face</span>
+                                <span class="tool-badge">spaCy</span>
+                                <span class="tool-badge">NLTK</span>
+                                <span class="tool-badge">Transformers</span>
+                                <span class="tool-badge">GPT API</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">3</td>
+                        <td class="col-mk">Computer Vision<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply image processing techniques for computer vision tasks</li>
+                                <li data-num="2.">Implement object detection and recognition algorithms</li>
+                                <li data-num="3.">Design systems for image classification and segmentation</li>
+                                <li data-num="4.">Apply deep learning models for visual data analysis</li>
+                                <li data-num="5.">Evaluate computer vision systems for performance and accuracy</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">OpenCV</span>
+                                <span class="tool-badge">YOLO</span>
+                                <span class="tool-badge">TensorFlow</span>
+                                <span class="tool-badge">PyTorch</span>
+                                <span class="tool-badge">Pillow</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">4</td>
+                        <td class="col-mk">Reinforcement Learning<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply reinforcement learning principles to sequential decision problems</li>
+                                <li data-num="2.">Implement value-based and policy-based learning algorithms</li>
+                                <li data-num="3.">Design reward functions for specific application domains</li>
+                                <li data-num="4.">Develop multi-agent reinforcement learning systems</li>
+                                <li data-num="5.">Evaluate reinforcement learning models for performance and stability</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">OpenAI Gym</span>
+                                <span class="tool-badge">Stable Baselines3</span>
+                                <span class="tool-badge">PyTorch</span>
+                                <span class="tool-badge">Ray RLlib</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">5</td>
+                        <td class="col-mk">AI-Planning and Search Strategies<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply search algorithms to solve planning problems</li>
+                                <li data-num="2.">Implement heuristic search techniques for efficiency</li>
+                                <li data-num="3.">Design planning representations for complex domains</li>
+                                <li data-num="4.">Develop constraint satisfaction problem solvers</li>
+                                <li data-num="5.">Evaluate planning algorithms for completeness and optimality</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">PDDL</span>
+                                <span class="tool-badge">A* Search</span>
+                                <span class="tool-badge">NetworkX</span>
+                                <span class="tool-badge">OR-Tools</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">6</td>
+                        <td class="col-mk">Model Deployment<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Deploy machine learning models to production environments</li>
+                                <li data-num="2.">Implement model serving architectures and APIs</li>
+                                <li data-num="3.">Apply monitoring and logging techniques for deployed models</li>
+                                <li data-num="4.">Develop strategies for model updates and versioning</li>
+                                <li data-num="5.">Evaluate production models for performance and reliability</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Docker</span>
+                                <span class="tool-badge">FastAPI</span>
+                                <span class="tool-badge">Flask</span>
+                                <span class="tool-badge">MLflow</span>
+                                <span class="tool-badge">BentoML</span>
+                                <span class="tool-badge">AWS SageMaker</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concentration-card">
+            <h4>Concentration III: Business Intelligence and Advanced Data Analytics</h4>
+            <table class="lo-table">
+                <thead>
+                    <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-no">1</td>
+                        <td class="col-mk">Business Intelligence Tools<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Implement data visualization and dashboard solutions using leading BI platforms</li>
+                                <li data-num="2.">Apply data modeling techniques for business intelligence applications</li>
+                                <li data-num="3.">Develop interactive reports and analytical applications for business users</li>
+                                <li data-num="4.">Configure data connections and integration with various enterprise data sources</li>
+                                <li data-num="5.">Evaluate BI tool capabilities for specific business requirements and user needs</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Tableau</span>
+                                <span class="tool-badge">Power BI</span>
+                                <span class="tool-badge">Looker</span>
+                                <span class="tool-badge">Metabase</span>
+                                <span class="tool-badge">QlikView</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">2</td>
+                        <td class="col-mk">Statistical Modeling<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply appropriate statistical models to business data analysis problems</li>
+                                <li data-num="2.">Implement regression, time series, and multivariate analysis techniques</li>
+                                <li data-num="3.">Develop hypothesis testing frameworks for business decision support</li>
+                                <li data-num="4.">Apply model validation and diagnostic techniques to ensure statistical validity</li>
+                                <li data-num="5.">Evaluate statistical models for accuracy, robustness, and business applicability</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">R</span>
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">SPSS</span>
+                                <span class="tool-badge">Stata</span>
+                                <span class="tool-badge">Excel</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">3</td>
+                        <td class="col-mk">Customer Analytics<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design customer segmentation models using demographic and behavioral data</li>
+                                <li data-num="2.">Implement customer lifetime value analysis and churn prediction models</li>
+                                <li data-num="3.">Develop marketing campaign effectiveness measurement frameworks</li>
+                                <li data-num="4.">Apply customer journey mapping and touchpoint analysis techniques</li>
+                                <li data-num="5.">Evaluate customer analytics initiatives for business impact and ROI</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">SQL</span>
+                                <span class="tool-badge">Mixpanel</span>
+                                <span class="tool-badge">Google Analytics</span>
+                                <span class="tool-badge">HubSpot</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">4</td>
+                        <td class="col-mk">Predictive Analytics<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design predictive modeling frameworks for business forecasting and planning</li>
+                                <li data-num="2.">Implement machine learning algorithms for classification and regression problems</li>
+                                <li data-num="3.">Develop feature engineering techniques to improve predictive model performance</li>
+                                <li data-num="4.">Apply model ensemble methods to enhance prediction accuracy</li>
+                                <li data-num="5.">Evaluate predictive models for accuracy, interpretability, and business utility</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">Scikit-learn</span>
+                                <span class="tool-badge">XGBoost</span>
+                                <span class="tool-badge">AutoML</span>
+                                <span class="tool-badge">H2O.ai</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">5</td>
+                        <td class="col-mk">Business Intelligence and Reporting<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Design comprehensive BI architectures aligned with organizational strategy</li>
+                                <li data-num="2.">Implement data governance frameworks for BI initiatives</li>
+                                <li data-num="3.">Develop KPI frameworks and performance measurement systems</li>
+                                <li data-num="4.">Create executive dashboards and automated reporting systems</li>
+                                <li data-num="5.">Evaluate BI implementations for business impact, user adoption, and ROI</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Power BI</span>
+                                <span class="tool-badge">Tableau</span>
+                                <span class="tool-badge">Looker</span>
+                                <span class="tool-badge">SQL</span>
+                                <span class="tool-badge">DAX</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-no">6</td>
+                        <td class="col-mk">Supply Chain Management Systems<br><small>3 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply analytics techniques to supply chain planning and optimization</li>
+                                <li data-num="2.">Implement inventory management and demand forecasting models</li>
+                                <li data-num="3.">Develop logistics network optimization and route planning solutions</li>
+                                <li data-num="4.">Apply simulation techniques to evaluate supply chain performance</li>
+                                <li data-num="5.">Evaluate supply chain analytics solutions for efficiency, resilience, and sustainability</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">SAP</span>
+                                <span class="tool-badge">Oracle SCM</span>
+                                <span class="tool-badge">Python</span>
+                                <span class="tool-badge">Excel</span>
+                                <span class="tool-badge">Arena Simulation</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="concentration-card">
+            <h4>Mata Kuliah Wajib Semua Konsentrasi</h4>
+            <table class="lo-table">
+                <thead>
+                    <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-no">1</td>
+                        <td class="col-mk">Professional Ethics<br><small>2 SKS</small></td>
+                        <td class="col-lo">
+                            <ol class="lo-list">
+                                <li data-num="1.">Apply ethical frameworks to professional decision-making</li>
+                                <li data-num="2.">Analyze ethical issues in technology and computing</li>
+                                <li data-num="3.">Develop solutions to ethical dilemmas in professional contexts</li>
+                                <li data-num="4.">Evaluate technology impacts on society and individuals</li>
+                                <li data-num="5.">Demonstrate awareness of professional responsibility and accountability</li>
+                            </ol>
+                        </td>
+                        <td class="col-tools">
+                            <div class="tools-wrap">
+                                <span class="tool-badge">Case Studies</span>
+                                <span class="tool-badge">Notion</span>
+                                <span class="tool-badge">IEEE/ACM Ethics Guidelines</span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem6);">Semester 6 -- MBKM I</span>
+            <span class="info">24 SKS &bull; Data Science Project Management, ETL, Statistical Modeling &amp; MK Umum</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Data Science Project Management<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design comprehensive data science project plans including scope, resources, timelines, and risk assessments</li>
+                            <li data-num="2.">Implement agile methodologies tailored for data science teams and workflows</li>
+                            <li data-num="3.">Apply stakeholder management techniques for aligning data science initiatives with business goals</li>
+                            <li data-num="4.">Develop data governance frameworks and documentation standards for data science projects</li>
+                            <li data-num="5.">Evaluate data science project success using appropriate KPIs and metrics frameworks</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Jira</span>
+                            <span class="tool-badge">Notion</span>
+                            <span class="tool-badge">Trello</span>
+                            <span class="tool-badge">MS Project</span>
+                            <span class="tool-badge">GitHub Projects</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Advanced Data Processing and ETL<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design scalable ETL architectures for complex data integration scenarios</li>
+                            <li data-num="2.">Implement advanced transformation logic for data normalization, cleansing, and enrichment</li>
+                            <li data-num="3.">Apply performance optimization techniques for high-volume ETL processes</li>
+                            <li data-num="4.">Develop monitoring and error handling frameworks for production ETL pipelines</li>
+                            <li data-num="5.">Evaluate ETL solutions for reliability, maintainability, and processing efficiency</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Apache Airflow</span>
+                            <span class="tool-badge">Talend</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">SQL</span>
+                            <span class="tool-badge">dbt</span>
+                            <span class="tool-badge">Spark</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Data Wrangling and Preprocessing Techniques<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Implement comprehensive data cleaning strategies for diverse data types (structured, semi-structured, unstructured)</li>
+                            <li data-num="2.">Apply advanced techniques for handling missing data, outliers, and imbalanced datasets</li>
+                            <li data-num="3.">Develop automated data quality assessment and validation frameworks</li>
+                            <li data-num="4.">Implement feature engineering and transformation pipelines for machine learning preparation</li>
+                            <li data-num="5.">Evaluate data preprocessing approaches for their impact on downstream analysis quality</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Pandas</span>
+                            <span class="tool-badge">NumPy</span>
+                            <span class="tool-badge">OpenRefine</span>
+                            <span class="tool-badge">Great Expectations</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Statistical Modeling and Inference<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply advanced statistical methods to complex real-world data problems</li>
+                            <li data-num="2.">Implement various regression models, time series analysis, and multivariate techniques</li>
+                            <li data-num="3.">Develop robust hypothesis testing frameworks with appropriate experimental designs</li>
+                            <li data-num="4.">Apply Bayesian modeling approaches for uncertainty quantification</li>
+                            <li data-num="5.">Evaluate statistical model assumptions, diagnostics, and performance metrics</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">R</span>
+                            <span class="tool-badge">Stata</span>
+                            <span class="tool-badge">SAS</span>
+                            <span class="tool-badge">PyMC3</span>
+                            <span class="tool-badge">Statsmodels</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Business Communication and Data Presentation<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design compelling data narratives that communicate insights to diverse stakeholders</li>
+                            <li data-num="2.">Implement advanced data visualization techniques for complex data relationships</li>
+                            <li data-num="3.">Develop executive dashboards and interactive reporting systems</li>
+                            <li data-num="4.">Apply storytelling techniques to transform technical findings into business recommendations</li>
+                            <li data-num="5.">Evaluate data presentations for clarity, impact, and actionability across different audience types</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Power BI</span>
+                            <span class="tool-badge">Tableau</span>
+                            <span class="tool-badge">Google Slides</span>
+                            <span class="tool-badge">Canva</span>
+                            <span class="tool-badge">Prezi</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Indonesian Way of Life / Pancasila<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Explain the principles of Pancasila as Indonesia's state philosophy</li>
+                            <li data-num="2.">Apply Pancasila values in professional and social contexts</li>
+                            <li data-num="3.">Analyze social issues from a Pancasila perspective</li>
+                            <li data-num="4.">Develop solutions to societal challenges based on Pancasila principles</li>
+                            <li data-num="5.">Evaluate policies and practices in light of Pancasila values</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Presentation Tools</span>
+                            <span class="tool-badge">Discussion Forums</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Religions of the World<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Analyze the core beliefs and practices of major world religions</li>
+                            <li data-num="2.">Compare and contrast religious perspectives on ethical issues</li>
+                            <li data-num="3.">Apply religious and cultural understanding in diverse environments</li>
+                            <li data-num="4.">Evaluate the influence of religion on society and individual behavior</li>
+                            <li data-num="5.">Demonstrate respect for religious diversity and perspectives</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Presentation Tools</span>
+                            <span class="tool-badge">Research Databases</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem7);">Semester 7 -- MBKM II</span>
+            <span class="info">24 SKS &bull; ML Applications, Big Data, Predictive Analytics &amp; Capstone</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Machine Learning Applications<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design end-to-end machine learning solutions for complex business problems</li>
+                            <li data-num="2.">Implement supervised, unsupervised, and reinforcement learning models for various domains</li>
+                            <li data-num="3.">Develop feature engineering and selection strategies to optimize model performance</li>
+                            <li data-num="4.">Apply model deployment and monitoring techniques in production environments</li>
+                            <li data-num="5.">Evaluate machine learning solutions for accuracy, robustness, interpretability, and business impact</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Scikit-learn</span>
+                            <span class="tool-badge">TensorFlow</span>
+                            <span class="tool-badge">PyTorch</span>
+                            <span class="tool-badge">MLflow</span>
+                            <span class="tool-badge">Docker</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Big Data Technologies and Cloud Integration<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design scalable big data architectures using distributed computing frameworks</li>
+                            <li data-num="2.">Implement data processing pipelines for batch and stream processing workloads</li>
+                            <li data-num="3.">Apply cloud-native services for big data storage, processing, and analytics</li>
+                            <li data-num="4.">Develop integration strategies between on-premises systems and cloud platforms</li>
+                            <li data-num="5.">Evaluate big data solutions for performance, cost-efficiency, scalability, and security</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Apache Spark</span>
+                            <span class="tool-badge">Kafka</span>
+                            <span class="tool-badge">AWS</span>
+                            <span class="tool-badge">GCP</span>
+                            <span class="tool-badge">Azure</span>
+                            <span class="tool-badge">Databricks</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Predictive Analytics and Forecasting<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply advanced time series forecasting techniques for business planning and decision support</li>
+                            <li data-num="2.">Implement ensemble methods and deep learning for complex prediction tasks</li>
+                            <li data-num="3.">Develop predictive models for specialized domains (finance, marketing, operations)</li>
+                            <li data-num="4.">Apply uncertainty quantification and scenario analysis in forecasting</li>
+                            <li data-num="5.">Evaluate predictive models for accuracy, calibration, and practical utility in business contexts</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Prophet</span>
+                            <span class="tool-badge">ARIMA</span>
+                            <span class="tool-badge">XGBoost</span>
+                            <span class="tool-badge">Statsmodels</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Data Ethics and Privacy<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply ethical frameworks and principles to data science and AI initiatives</li>
+                            <li data-num="2.">Implement privacy-enhancing technologies and anonymization techniques</li>
+                            <li data-num="3.">Develop data governance policies that address ethical and privacy considerations</li>
+                            <li data-num="4.">Apply regulatory compliance measures (GDPR, CCPA, etc.) in data projects</li>
+                            <li data-num="5.">Evaluate data science solutions for fairness, transparency, accountability, and societal impact</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">OWASP ZAP</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Kali Linux</span>
+                            <span class="tool-badge">GDPR Tools</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Capstone Data Science Project<br><small>4 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design comprehensive data science projects addressing real-world problems</li>
+                            <li data-num="2.">Implement end-to-end data pipelines from acquisition to insight generation</li>
+                            <li data-num="3.">Apply appropriate analytical methods based on project requirements</li>
+                            <li data-num="4.">Develop effective presentations and documentation of technical solutions</li>
+                            <li data-num="5.">Evaluate project outcomes against business objectives and technical requirements</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Full Stack</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Docker</span>
+                            <span class="tool-badge">GitHub</span>
+                            <span class="tool-badge">Cloud Platform</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Applied Indonesian Language<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Communicate effectively in professional contexts using Indonesian language</li>
+                            <li data-num="2.">Apply appropriate Indonesian language styles for different business situations</li>
+                            <li data-num="3.">Develop technical and business documentation in formal Indonesian</li>
+                            <li data-num="4.">Analyze Indonesian language use in professional and academic contexts</li>
+                            <li data-num="5.">Evaluate the quality and effectiveness of professional communication in Indonesian</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">MS Word</span>
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Turnitin</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Civic / Kewarganegaraan<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Analyze the relationship between citizenship rights and responsibilities in Indonesian society</li>
+                            <li data-num="2.">Apply constitutional principles to contemporary civic issues and challenges</li>
+                            <li data-num="3.">Evaluate the impact of public policies on citizens and communities</li>
+                            <li data-num="4.">Develop strategies for civic engagement and participation in democratic processes</li>
+                            <li data-num="5.">Demonstrate ethical decision-making aligned with national values and principles</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Presentation Tools</span>
+                            <span class="tool-badge">Research Databases</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="semester-block">
+        <div class="semester-header">
+            <span class="pill" style="background:var(--sem8);">Semester 8</span>
+            <span class="info">10 SKS &bull; Capstone Project, Thesis, Portfolio &amp; Publikasi</span>
+        </div>
+        <table class="lo-table">
+            <thead>
+                <tr><th class="col-no">No</th><th class="col-mk">Mata Kuliah</th><th class="col-lo">Learning Outcomes</th><th class="col-tools">Learning Tools</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-no">1</td>
+                    <td class="col-mk">Capstone Project<br><small>6 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design and execute a comprehensive project addressing a complex real-world problem in the chosen field of study</li>
+                            <li data-num="2.">Apply appropriate methodologies, tools, and techniques from across the curriculum to develop innovative solutions</li>
+                            <li data-num="3.">Evaluate the effectiveness of implemented solutions using appropriate metrics and assessment techniques</li>
+                            <li data-num="4.">Demonstrate professional and ethical responsibility in all aspects of project development and execution</li>
+                            <li data-num="5.">Synthesize knowledge from multiple disciplines to create an integrated approach to problem-solving</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Full Stack</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Docker</span>
+                            <span class="tool-badge">GitHub</span>
+                            <span class="tool-badge">Cloud Platform</span>
+                            <span class="tool-badge">CI/CD</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">2</td>
+                    <td class="col-mk">Collaborative Project<br><small>Komponen Capstone</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply effective team collaboration skills in multidisciplinary project environments</li>
+                            <li data-num="2.">Implement project management techniques for division of labor and task coordination</li>
+                            <li data-num="3.">Resolve team conflicts constructively to maintain project progress</li>
+                            <li data-num="4.">Demonstrate leadership and followership skills as appropriate in team contexts</li>
+                            <li data-num="5.">Evaluate team processes and outcomes for continuous improvement</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">GitHub</span>
+                            <span class="tool-badge">Jira</span>
+                            <span class="tool-badge">Notion</span>
+                            <span class="tool-badge">Slack</span>
+                            <span class="tool-badge">MS Teams</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">3</td>
+                    <td class="col-mk">Portfolio<br><small>Komponen Capstone</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Curate a professional portfolio that effectively showcases technical and creative capabilities</li>
+                            <li data-num="2.">Document project work with clear explanation of problem statements, methodologies, and outcomes</li>
+                            <li data-num="3.">Reflect critically on personal and professional growth throughout the educational program</li>
+                            <li data-num="4.">Present work samples that demonstrate breadth and depth of professional skills</li>
+                            <li data-num="5.">Design portfolio materials that communicate effectively to target audiences (employers, clients, etc.)</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">GitHub Pages</span>
+                            <span class="tool-badge">Behance</span>
+                            <span class="tool-badge">LinkedIn</span>
+                            <span class="tool-badge">Personal Website</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">4</td>
+                    <td class="col-mk">Product Prototype<br><small>Komponen Capstone</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design and develop functional prototypes that demonstrate feasibility of proposed solutions</li>
+                            <li data-num="2.">Apply iterative design and testing methodologies to refine prototype functionality</li>
+                            <li data-num="3.">Implement appropriate technologies and techniques to create minimum viable products</li>
+                            <li data-num="4.">Document technical specifications and development processes for knowledge transfer</li>
+                            <li data-num="5.">Evaluate prototypes against user requirements and design specifications</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">Figma</span>
+                            <span class="tool-badge">Docker</span>
+                            <span class="tool-badge">GitHub</span>
+                            <span class="tool-badge">Cloud Platform</span>
+                            <span class="tool-badge">Postman</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">5</td>
+                    <td class="col-mk">Scientific Publication<br><small>Komponen Capstone</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design and conduct original research following scientific methodology</li>
+                            <li data-num="2.">Analyze research data using appropriate quantitative and/or qualitative methods</li>
+                            <li data-num="3.">Synthesize research findings in the context of existing literature and theoretical frameworks</li>
+                            <li data-num="4.">Develop manuscripts that meet academic publication standards and conventions</li>
+                            <li data-num="5.">Communicate research findings effectively to both specialist and non-specialist audiences</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Mendeley</span>
+                            <span class="tool-badge">Zotero</span>
+                            <span class="tool-badge">Google Scholar</span>
+                            <span class="tool-badge">Turnitin</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">6</td>
+                    <td class="col-mk">Thesis<br><small>Komponen Capstone</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Formulate research questions and hypotheses that address significant issues in the field</li>
+                            <li data-num="2.">Apply appropriate research methodologies to investigate proposed questions</li>
+                            <li data-num="3.">Analyze findings using critical thinking and appropriate analytical frameworks</li>
+                            <li data-num="4.">Synthesize conclusions that contribute to the body of knowledge in the field</li>
+                            <li data-num="5.">Defend research findings and conclusions through scholarly argumentation</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Mendeley</span>
+                            <span class="tool-badge">SPSS</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">Turnitin</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">7</td>
+                    <td class="col-mk">Academic Writing in English<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Apply academic writing conventions and formats</li>
+                            <li data-num="2.">Develop well-structured arguments and thesis statements</li>
+                            <li data-num="3.">Implement proper citation and referencing techniques</li>
+                            <li data-num="4.">Analyze and synthesize information from academic sources</li>
+                            <li data-num="5.">Evaluate and revise writing for clarity and coherence</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Grammarly</span>
+                            <span class="tool-badge">Mendeley</span>
+                            <span class="tool-badge">Zotero</span>
+                            <span class="tool-badge">MS Word</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-no">8</td>
+                    <td class="col-mk">Research Methodology<br><small>2 SKS</small></td>
+                    <td class="col-lo">
+                        <ol class="lo-list">
+                            <li data-num="1.">Design research studies using appropriate methodologies</li>
+                            <li data-num="2.">Apply data collection techniques relevant to research questions</li>
+                            <li data-num="3.">Implement appropriate data analysis methods</li>
+                            <li data-num="4.">Interpret research findings and draw valid conclusions</li>
+                            <li data-num="5.">Communicate research results effectively through reports and presentations</li>
+                        </ol>
+                    </td>
+                    <td class="col-tools">
+                        <div class="tools-wrap">
+                            <span class="tool-badge">SPSS</span>
+                            <span class="tool-badge">Python</span>
+                            <span class="tool-badge">R</span>
+                            <span class="tool-badge">LaTeX</span>
+                            <span class="tool-badge">Mendeley</span>
+                            <span class="tool-badge">Google Scholar</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title"><span class="dot" style="background:var(--sem5)"></span> Ringkasan Total SKS</h2>
+    <div class="summary-card" style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+        <div style="flex:1;min-width:200px;">
+            <table class="lo-table" style="font-size:.82rem;">
+                <thead><tr><th>Semester</th><th style="text-align:center;">SKS</th></tr></thead>
+                <tbody>
+                    <tr><td>Semester 1</td><td style="text-align:center;">20</td></tr>
+                    <tr><td>Semester 2</td><td style="text-align:center;">20</td></tr>
+                    <tr><td>Short Semester 1</td><td style="text-align:center;">9</td></tr>
+                    <tr><td>Semester 3</td><td style="text-align:center;">18</td></tr>
+                    <tr><td>Semester 4</td><td style="text-align:center;">18</td></tr>
+                    <tr><td>Short Semester 2</td><td style="text-align:center;">9</td></tr>
+                    <tr><td>Semester 5 (Concentration)</td><td style="text-align:center;">18</td></tr>
+                    <tr><td>Semester 6 (MBKM I)</td><td style="text-align:center;">24</td></tr>
+                    <tr><td>Semester 7 (MBKM II)</td><td style="text-align:center;">24</td></tr>
+                    <tr><td>Semester 8</td><td style="text-align:center;">10</td></tr>
+                    <tr style="background:rgba(108,99,255,.08);"><td><strong>TOTAL</strong></td><td style="text-align:center;"><strong>152 + 18 (Extra) = 170 SKS</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>Dokumen Perbaikan &amp; Penyelarasan Learning Outcomes -- Program Studi Data Science</p>
+    <p>Diselaraskan dengan Kebutuhan CDC Fakultas IT &bull; Terakhir diperbarui: April 2026</p>
+</footer>
+
+<button class="export-btn" id="exportPdfBtn" onclick="exportToPDF()">
+    <span class="btn-icon">Export PDF</span>
+</button>
+
+<div class="toast" id="toast">PDF berhasil di-download!</div>
+
+<script>
+function exportToPDF() {
+    window.print();
+}
+</script>
+
+</body>
+</html>
